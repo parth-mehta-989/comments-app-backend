@@ -5,8 +5,7 @@ STEPS:
 3. Run the follwing commands on your local.
 
    ```
-   $ npm install nodemon -g
    $ npm install
    ```
 
-4. Run `nodemon app.js` to start the server.
+4. Run `node app.js` to start the server.
