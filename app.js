@@ -1,16 +1,9 @@
 const express = require('express');
-const https = require("https")
 require('dotenv').config()
 const bodyParser = require('body-parser');
 const crudHandlers = require('./handlers/comment.crud.handlers');
-const fs = require('fs')
-
+const e = require('express');
 const app = express();
-const options = {
-    key: fs.readFileSync('key.pem'),
-    cert: fs.readFileSync('cert.pem')
-}
-
 
 app.use(bodyParser.json());
 
@@ -52,8 +45,10 @@ app.patch('/comments/:id', crudHandlers.updateCommentHandler)
 
 
 
-const PORT = process.env.PORT || 9090
 
-https.createServer(options, app).listen(PORT, console.log(`server runs on port ${PORT}`))
+
+app.listen(9090, () => {
+    console.log("listening on port 9090")
+  })
 
 
