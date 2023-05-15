@@ -52,7 +52,7 @@ exports.createCommentHandler = async (req, res) => {
             VALUES ($1, $2, $3, $4)
             RETURNING id, data, parent_id, username, created`,
             [commentData, userName, parentId, now]);
-            consolg.log("successfully created comment")
+            console.log("successfully created comment")
             res.send(result.rows[0]);
     } catch (err) {
             console.log(`error creating comment` )
