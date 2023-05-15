@@ -46,13 +46,12 @@ exports.createCommentHandler = async (req, res) => {
     }
 
     try {
-        let now = new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
-        let epochTimeTillNow = new Date(now)
+        let now = new Date()
         const result = await client.query(`
             INSERT INTO comments (data, username, parent_id, created)
             VALUES ($1, $2, $3, $4)
             RETURNING id, data, parent_id, username, created`,
-            [commentData, userName, parentId, epochTimeTillNow]);
+            [commentData, userName, parentId, now]);
             console.log("successfully created comment")
             res.send(result.rows[0]);
     } catch (err) {
@@ -95,14 +94,13 @@ exports.deleteCommentHandler = async (req, res) => {
 exports.updateCommentHandler = async (req, res) => {
     let id = parseInt(req.params.id)
     let commentData = req.body.data
-    let now = new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
-    let epochTimeTillNow = new Date(now)
+    let now = new Date()
     try {
         const updateResult = await client.query(
             `UPDATE comments 
             SET data = $1, updated = $2
             WHERE id = $3;`,
-            [commentData, epochTimeTillNow, id]
+            [commentData, now, id]
         )
         if (updateResult.rowCount) {
             console.log(`updated comment ${id}`)
