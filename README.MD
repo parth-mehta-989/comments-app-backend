@@ -4,7 +4,9 @@ STEPS:
 2. Set up your env file as per `.env.example` file.
 3. Run the follwing commands on your local.
 
-   `npm install nodemon -g`
-   `npm install`
+   ```
+   $ npm install nodemon -g
+   $ npm install
+   ```
 
 4. Run `nodemon app.js` to start the server.
